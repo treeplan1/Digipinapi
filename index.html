@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══════════════════════════════════════ SEO META TAGS ═══════════════════════════════════════ -->
+<title>DigiPin API — Precise Location API for Indian E-commerce & Logistics</title>
+<meta name="description" content="India's first dedicated DIGIPIN API. Convert GPS coordinates to India Post DIGIPIN instantly. Reduce failed deliveries by 40%. Built for Shopify, WooCommerce & logistics platforms.">
+<meta name="keywords" content="DIGIPIN API, India Post DIGIPIN, location API India, e-commerce delivery API, GPS to DIGIPIN, address verification India, logistics API India, Shopify DIGIPIN, delivery precision API">
+<meta name="author" content="DigiPinAPI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.digipinapi.in/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.digipinapi.in/">
+<meta property="og:title" content="DigiPin API — Precise Location API for Indian E-commerce">
+<meta property="og:description" content="Convert GPS to India Post DIGIPIN instantly. The B2B API that eliminates failed deliveries for Indian e-commerce businesses.">
+<meta property="og:image" content="https://www.digipinapi.in/og-image.png">
+<meta property="og:site_name" content="DigiPinAPI">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DigiPin API — Precise Location API for Indian E-commerce">
+<meta name="twitter:description" content="Convert GPS to India Post DIGIPIN instantly. Eliminate failed deliveries.">
+<meta name="twitter:image" content="https://www.digipinapi.in/og-image.png">
+
+<!-- Structured Data — Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DigiPin API",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "India Post DIGIPIN API for e-commerce and logistics. Convert GPS coordinates to DIGIPIN codes instantly.",
+  "url": "https://www.digipinapi.in",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Starter",
+      "price": "0",
+      "priceCurrency": "INR",
+      "description": "500 API calls per month — free forever"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "999",
+      "priceCurrency": "INR",
+      "description": "50,000 API calls per month"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "DigiPinAPI",
+    "url": "https://www.digipinapi.in",
+    "email": "hello@digipinapi.in"
+  }
+}
+</script>
+
+<!-- Structured Data — FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is DIGIPIN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DIGIPIN is a 10-character alphanumeric code introduced by India Post that maps any 4x4 meter area in India to a unique digital address, enabling precise location identification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the DigiPin API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The DigiPin API provides 3x3 meter precision when used with high-accuracy GPS. API response time is under 50ms with zero external dependencies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which platforms does DigiPin API support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DigiPin API works with any platform via REST API — including Shopify, WooCommerce, custom apps, and logistics management systems. An embeddable widget is available for quick integration."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Google Search Console Verification (replace with your actual code) -->
+<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --yellow:    #FCA61F;
+  --yellow-lt: #FDB849;
+  --yellow-bg: #FFF8EC;
+  --purple:    #8976FD;
+  --purple-lt: #A693FE;
+  --purple-bg: #F0EDFF;
+  --sky:       #6DCBFF;
+  --teal:      #6DEDC3;
+  --ep:        #C06EF3;
+  --text:      #332C5C;
+  --text2:     #494369;
+  --muted:     #5E587A;
+  --border:    #EBEBF5;
+  --white:     #FFFFFF;
+  --bg:        #F8F8FC;
+  --success:   #27AE60;
+  --error:     #EB5757;
+  --info:      #2F80ED;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;font-size:16px;line-height:1.6}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 20px rgba(51,44,92,.08)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-icon{width:36px;height:36px;background:var(--purple);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(137,118,253,.35)}
+.nav-icon svg{width:20px;height:20px;fill:white}
+.nav-brand{font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:var(--text)}
+.nav-brand span{color:var(--purple)}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-login{font-size:14px;font-weight:600;color:var(--text2);text-decoration:none}
+.nav-signup{background:var(--purple);color:white;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Nunito Sans',sans-serif;text-decoration:none;transition:all .2s;box-shadow:0 4px 14px rgba(137,118,253,.3)}
+.nav-signup:hover{background:var(--purple-lt);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero-wrap{max-width:1200px;margin:0 auto;padding:130px 60px 80px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.eyebrow-pill{display:inline-flex;align-items:center;gap:8px;background:var(--purple-bg);color:var(--purple);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px;margin-bottom:22px;font-family:'Poppins',sans-serif}
+.live-dot{width:6px;height:6px;background:var(--success);border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1.15;letter-spacing:-1px;color:var(--text);margin-bottom:20px}
+h1 .hp{color:var(--purple)}
+h1 .hy{color:var(--yellow)}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.8;max-width:460px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:white;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Nunito Sans',sans-serif;box-shadow:0 6px 20px rgba(137,118,253,.3)}
+.btn-primary:hover{background:var(--purple-lt);transform:translateY(-2px);box-shadow:0 10px 28px rgba(137,118,253,.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:white;color:var(--text);padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;border:2px solid var(--border);cursor:pointer;font-family:'Nunito Sans',sans-serif}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:36px;align-items:center}
+.snum{font-family:'Poppins',sans-serif;font-size:26px;font-weight:800;color:var(--text)}
+.slbl{font-size:13px;color:var(--muted);margin-top:2px}
+.sdiv{width:1px;height:36px;background:var(--border)}
+
+/* Hero cards */
+.hero-right{position:relative;height:460px}
+.fcard{position:absolute;background:white;border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(51,44,92,.1);border:1px solid var(--border)}
+.fcard.f1{animation:float 4s ease-in-out infinite}
+.fcard.f2{animation:float 4s ease-in-out infinite;animation-delay:1s}
+.fcard.f3{animation:float 4s ease-in-out infinite;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.main-card{top:20px;left:0;right:0;background:var(--text);border-radius:20px;padding:24px;font-family:'Courier New',monospace;font-size:13px;line-height:1.9;border:none}
+.ctop{display:flex;align-items:center;gap:7px;margin-bottom:16px}
+.cdot{width:10px;height:10px;border-radius:50%}
+.ctag{margin-left:auto;font-family:'Poppins',sans-serif;font-size:11px;background:rgba(255,255,255,.1);padding:3px 10px;border-radius:20px;color:rgba(255,255,255,.5)}
+.cg{color:#5E587A}.ck{color:var(--yellow)}.cs{color:var(--teal)}.cn{color:var(--sky)}
+.scard{bottom:10px;right:0;padding:16px 20px;min-width:180px}
+.scl{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.scv{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:var(--text)}
+.scb{display:inline-block;background:#E8F8F0;color:var(--success);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:6px}
+.acard{bottom:110px;left:-20px;padding:14px 18px;min-width:155px}
+.ai{font-size:22px;margin-bottom:6px}
+.at{font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--text)}
+.as{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── BRANDS ── */
+.brands-bar{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 60px;display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap}
+.bl{font-size:13px;color:var(--muted);font-weight:600}
+.brand{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--text2);opacity:.35;transition:opacity .2s;cursor:default}
+.brand:hover{opacity:1}
+
+/* ── SECTION BASE ── */
+section{padding:100px 60px}
+.si{max-width:1100px;margin:0 auto}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:14px}
+.sec-eyebrow::before{content:'';width:18px;height:3px;background:var(--yellow);border-radius:2px}
+h2{font-family:'Poppins',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.5px;line-height:1.2;color:var(--text);margin-bottom:14px}
+.sec-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:520px}
+
+/* ── HOW IT WORKS ── */
+.bg-alt{background:var(--bg)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.hcard{background:white;border-radius:20px;padding:32px 28px;border:1px solid var(--border);position:relative;overflow:hidden;transition:all .3s}
+.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.hcard:nth-child(1)::before{background:var(--purple)}
+.hcard:nth-child(2)::before{background:var(--yellow)}
+.hcard:nth-child(3)::before{background:var(--teal)}
+.hcard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(51,44,92,.1)}
+.hicon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.hcard:nth-child(1) .hicon{background:var(--purple-bg)}
+.hcard:nth-child(2) .hicon{background:var(--yellow-bg)}
+.hcard:nth-child(3) .hicon{background:#ECFDF9}
+.hstep{font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.htitle{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px}
+.hdesc{font-size:14px;color:var(--muted);line-height:1.7}
+.hcode{margin-top:16px;background:var(--bg);border-radius:8px;padding:10px 14px;font-family:'Courier New',monospace;font-size:12px;color:var(--purple);border:1px solid var(--border)}
+
+/* ── LIVE DEMO ── */
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.dcard{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(51,44,92,.06)}
+.dcard-hdr{padding:16px 22px;border-bottom:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:space-between}
+.dcard-title{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--text)}
+.dmethod{font-size:11px;font-weight:700;background:var(--purple-bg);color:var(--purple);padding:3px 10px;border-radius:6px;font-family:'Poppins',sans-serif}
+.dcard-body{padding:22px}
+.dinrow{display:flex;gap:10px;margin-bottom:14px}
+.dinput{flex:1;background:var(--bg);border:1.5px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:'Courier New',monospace;font-size:13px;outline:none;transition:border-color .2s}
+.dinput:focus{border-color:var(--purple)}
+.drun{background:var(--purple);color:white;border:none;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito Sans',sans-serif;transition:all .2s;width:100%;margin-bottom:14px}
+.drun:hover{background:var(--purple-lt)}
+.dout{background:var(--text);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:12px;line-height:1.9;min-height:96px;color:#5E587A;position:relative}
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--yellow);border-radius:50%;animation:spin .7s linear infinite;margin:20px auto;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── WIDGET ── */
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:56px;align-items:center}
+.wpoints{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.wpoint{display:flex;gap:16px;align-items:flex-start}
+.wicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wicon.p{background:var(--purple-bg)}.wicon.y{background:var(--yellow-bg)}.wicon.t{background:#ECFDF9}
+.wtitle{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.wdesc{font-size:13px;color:var(--muted);line-height:1.6}
+.code-preview{background:var(--text);border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(51,44,92,.15)}
+.cph{padding:14px 18px;background:rgba(255,255,255,.05);display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(255,255,255,.08)}
+.cpdot{width:10px;height:10px;border-radius:50%}
+.cpfn{font-size:12px;color:rgba(255,255,255,.3);margin-left:8px;font-family:'Courier New',monospace}
+.cpbody{padding:22px;font-family:'Courier New',monospace;font-size:12px;line-height:1.9}
+
+/* ── STATS STRIP ── */
+.stats-strip{background:var(--purple);padding:56px 60px}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat-box{}
+.stat-num{font-family:'Poppins',sans-serif;font-size:40px;font-weight:800;color:white;letter-spacing:-1px}
+.stat-lbl{font-size:14px;color:rgba(255,255,255,.7);margin-top:4px}
+.stat-box-div{border-left:1px solid rgba(255,255,255,.2)}
+
+/* ── PRICING ── */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.pcard{background:white;border:2px solid var(--border);border-radius:24px;padding:36px 28px;position:relative;transition:all .3s}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(51,44,92,.1)}
+.pcard.feat{border-color:var(--purple);background:var(--text)}
+.feat-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--text);font-family:'Poppins',sans-serif;font-size:11px;font-weight:800;padding:5px 18px;border-radius:20px;white-space:nowrap}
+.pplan{font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.pcard.feat .pplan{color:rgba(255,255,255,.5)}
+.pamount{font-family:'Poppins',sans-serif;font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--text);margin-bottom:4px}
+.pcard.feat .pamount{color:white}
+.pamount .cur{font-size:22px;vertical-align:top;margin-top:10px;display:inline-block}
+.pper{font-size:13px;color:var(--muted);margin-bottom:28px}
+.pcard.feat .pper{color:rgba(255,255,255,.5)}
+.pdiv{height:1px;background:var(--border);margin-bottom:24px}
+.pcard.feat .pdiv{background:rgba(255,255,255,.1)}
+.pfeats{display:flex;flex-direction:column;gap:13px;margin-bottom:28px}
+.pf{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.pcard.feat .pf{color:rgba(255,255,255,.7)}
+.pf.hi{color:var(--text);font-weight:600}
+.pcard.feat .pf.hi{color:white}
+.pchk{width:20px;height:20px;border-radius:50%;background:var(--purple-bg);color:var(--purple);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pcard.feat .pchk{background:rgba(255,255,255,.15);color:var(--yellow)}
+.pbtn{display:block;width:100%;padding:14px;border-radius:12px;font-size:14px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;transition:all .2s;font-family:'Nunito Sans',sans-serif;border:none}
+.pbtn-out{background:transparent;border:2px solid var(--border);color:var(--text)}
+.pbtn-out:hover{border-color:var(--purple);color:var(--purple)}
+.pbtn-y{background:var(--yellow);color:var(--text)}
+.pbtn-y:hover{background:var(--yellow-lt);transform:translateY(-1px);box-shadow:0 6px 16px rgba(252,166,31,.4)}
+
+/* ── FAQ ── */
+.faq-grid{max-width:760px;margin:56px auto 0}
+.faq-item{border-bottom:1px solid var(--border);padding:0}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;color:var(--text);text-align:left;gap:16px}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--purple-bg);color:var(--purple);font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;font-weight:400}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--purple);color:white}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+.faq-a p{font-size:15px;color:var(--muted);line-height:1.8}
+
+/* ── CTA BANNER ── */
+.cta-section{background:var(--text);padding:80px 60px;text-align:center}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-title{font-family:'Poppins',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:white;margin-bottom:14px;letter-spacing:-.5px}
+.cta-title .y{color:var(--yellow)}
+.cta-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:32px}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-y{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--text);font-weight:700;padding:14px 32px;border-radius:12px;font-size:15px;text-decoration:none;font-family:'Nunito Sans',sans-serif;transition:all .2s;box-shadow:0 6px 20px rgba(252,166,31,.35)}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(252,166,31,.45)}
+.btn-gh{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:white;font-weight:600;padding:14px 28px;border-radius:12px;font-size:15px;text-decoration:none;font-family:'Nunito Sans',sans-serif;border:1px solid rgba(255,255,255,.15);transition:all .2s}
+.btn-gh:hover{background:rgba(255,255,255,.18)}
+
+/* ── PRIVACY POLICY ── */
+#privacy{background:var(--bg)}
+.privacy-card{background:white;border:1px solid var(--border);border-radius:20px;padding:48px;max-width:820px;margin:0 auto;box-shadow:0 4px 20px rgba(51,44,92,.06)}
+.privacy-card h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.privacy-card h3:first-child{margin-top:0}
+.privacy-card p,.privacy-card li{font-size:15px;color:var(--muted);line-height:1.8}
+.privacy-card ul{padding-left:20px;margin-top:8px}
+.privacy-card li{margin-bottom:4px}
+.privacy-card a{color:var(--purple);text-decoration:none}
+.privacy-last-updated{display:inline-block;font-size:12px;color:var(--muted);background:var(--purple-bg);padding:4px 12px;border-radius:20px;margin-bottom:24px;font-family:'Poppins',sans-serif;font-weight:600}
+
+/* ── FOOTER ── */
+.footer-top{background:var(--text);padding:60px}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.flogo{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;color:white;margin-bottom:12px}
+.flogo span{color:var(--yellow)}
+.ftag{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;margin-bottom:20px}
+.fmail{font-size:13px;color:var(--yellow);text-decoration:none;font-weight:600}
+.fh{font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:white;margin-bottom:16px;letter-spacing:.5px;text-transform:uppercase}
+.flinks-col{display:flex;flex-direction:column;gap:10px}
+.flinks-col a{font-size:14px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.flinks-col a:hover{color:white}
+.footer-bottom{background:#1E1A3A;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fcopy{font-size:12px;color:rgba(255,255,255,.3)}
+.fpolicy{display:flex;gap:20px}
+.fpolicy a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.fpolicy a:hover{color:rgba(255,255,255,.8)}
+
+/* ── ANIMATIONS ── */
+.fu{opacity:0;transform:translateY(28px);transition:all .65s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+.fu2{transition-delay:.12s}
+.fu3{transition-delay:.24s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .hero-wrap{padding:110px 20px 60px}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  section{padding:60px 20px}
+  .brands-bar{gap:28px;padding:24px 20px}
+  .how-grid,.demo-grid,.wgrid,.pgrid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:1fr 1fr;gap:32px}
+  .stat-box-div{border-left:none;border-top:1px solid rgba(255,255,255,.2);padding-top:24px}
+  .stats-strip{padding:40px 20px}
+  .cta-section{padding:60px 20px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-top,.footer-bottom{padding:40px 20px}
+  .privacy-card{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+    <div class="nav-brand">DigiPin<span>API</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#demo">Live Demo</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:hello@digipinapi.in" class="nav-login">Login</a>
+    <a href="mailto:hello@digipinapi.in" class="nav-signup">Sign Up Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap fu">
+  <div class="hero">
+    <div>
+      <div class="eyebrow-pill"><div class="live-dot"></div>India Post DIGIPIN — Official API</div>
+      <h1>Deliver to the<br><span class="hp">right door.</span><br><span class="hy">Every single time.</span></h1>
+      <p class="hero-sub">The precision location API built for Indian e-commerce and logistics. Convert GPS coordinates to DIGIPIN instantly — reduce failed deliveries, cut return costs, and delight customers.</p>
+      <div class="hero-btns">
+        <a href="mailto:hello@digipinapi.in" class="btn-primary">Get Free API Access <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#demo" class="btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>See Live Demo</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="snum">3×3m</div><div class="slbl">Precision</div></div>
+        <div class="sdiv"></div>
+        <div><div class="snum">&lt;50ms</div><div class="slbl">Response Time</div></div>
+        <div class="sdiv"></div>
+        <div><div class="snum">100%</div><div class="slbl">India Coverage</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="fcard f1 main-card">
+        <div class="ctop"><div class="cdot" style="background:#FF5F57"></div><div class="cdot" style="background:#FFBD2E"></div><div class="cdot" style="background:#28CA41"></div><div class="ctag">generate-digipin</div></div>
+        <span class="cg"># Convert GPS to DIGIPIN</span><br>
+        <span class="ck">GET</span> /api/v1/generate<br>
+        &nbsp;&nbsp;<span class="cs">lat</span>=<span class="cn">28.6139</span> &amp;<br>
+        &nbsp;&nbsp;<span class="cs">lon</span>=<span class="cn">77.2090</span><br><br>
+        <span class="cg">// Response</span><br>
+        {<br>
+        &nbsp;&nbsp;<span class="cs">"status"</span>: <span class="ck">"Success"</span>,<br>
+        &nbsp;&nbsp;<span class="cs">"digipin"</span>: <span style="color:#FCA61F;font-weight:700">"39J-438-TJC7"</span><br>
+        }
+      </div>
+      <div class="fcard f2 scard"><div class="scl">Delivery Status</div><div class="scv">39J-438-TJC7</div><div class="scb">✓ Delivered Successfully</div></div>
+      <div class="fcard f3 acard"><div class="ai">📍</div><div class="at">3×3m Accuracy</div><div class="as">Exact gate-level precision</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-bar">
+  <div class="bl">Integrates with</div>
+  <div class="brand">Shopify</div>
+  <div class="brand">WooCommerce</div>
+  <div class="brand">Shiprocket</div>
+  <div class="brand">Delhivery</div>
+  <div class="brand">Custom Apps</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="bg-alt">
+  <div class="si">
+    <div class="fu">
+      <div class="sec-eyebrow">How It Works</div>
+      <h2>Three steps to perfect delivery.</h2>
+      <p class="sec-sub">Your customer sets their location once — your logistics system navigates precisely to the right door every time after that.</p>
+    </div>
+    <div class="how-grid">
+      <div class="hcard fu">
+        <div class="hicon">📍</div>
+        <div class="hstep">Step 01</div>
+        <div class="htitle">Customer Sets Exact Location</div>
+        <div class="hdesc">The customer uses GPS or drops a pin on an interactive map to mark their exact gate or entrance — no incomplete text addresses required.</div>
+        <div class="hcode">📱 GPS → lat: 28.6139, lon: 77.2090</div>
+      </div>
+      <div class="hcard fu fu2">
+        <div class="hicon">⚡</div>
+        <div class="hstep">Step 02</div>
+        <div class="htitle">DigiPin Generated Instantly</div>
+        <div class="hdesc">Your application calls our API and receives a unique 10-character India Post DIGIPIN code in under 50ms — zero external dependencies, zero downtime risk.</div>
+        <div class="hcode">⚡ API Response → "39J-438-TJC7"</div>
+      </div>
+      <div class="hcard fu fu3">
+        <div class="hicon">🎯</div>
+        <div class="hstep">Step 03</div>
+        <div class="htitle">Precise Delivery Every Time</div>
+        <div class="hdesc">The delivery partner decodes the DIGIPIN and navigates directly to the exact 3×3m location — zero confusion, zero failed deliveries, zero return shipments.</div>
+        <div class="hcode">🎯 Navigate → exact front door</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-box fu"><div class="stat-num">~15%</div><div class="stat-lbl">Failed deliveries in India due to wrong addresses</div></div>
+    <div class="stat-box fu fu2 stat-box-div"><div class="stat-num">&lt;50ms</div><div class="stat-lbl">Average API response time, zero external calls</div></div>
+    <div class="stat-box fu fu3 stat-box-div"><div class="stat-num">3×3m</div><div class="stat-lbl">Location precision — gate-level accuracy</div></div>
+    <div class="stat-box fu stat-box-div"><div class="stat-num">100%</div><div class="stat-lbl">India coverage — every PIN code, every district</div></div>
+  </div>
+</div>
+
+<!-- LIVE DEMO -->
+<section id="demo">
+  <div class="si">
+    <div class="fu">
+      <div class="sec-eyebrow">Live Demo</div>
+      <h2>Try the API right now.</h2>
+      <p class="sec-sub">Real API calls — no mocks, no placeholders. Enter any GPS coordinates and see DIGIPIN generated live.</p>
+    </div>
+    <div class="demo-grid fu">
+      <div class="dcard">
+        <div class="dcard-hdr"><div class="dcard-title">Generate DigiPin</div><div class="dmethod">GET</div></div>
+        <div class="dcard-body">
+          <div class="dinrow">
+            <input class="dinput" id="dLat" placeholder="Latitude" value="28.6139">
+            <input class="dinput" id="dLon" placeholder="Longitude" value="77.2090">
+          </div>
+          <button class="drun" onclick="runGen()">▶ &nbsp;Run API Call</button>
+          <div class="dout" id="genOut"><span style="color:#5E587A">// Response will appear here...</span><div class="spin" id="gl"></div></div>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-hdr"><div class="dcard-title">Decode DigiPin</div><div class="dmethod">GET</div></div>
+        <div class="dcard-body">
+          <div class="dinrow"><input class="dinput" id="dCode" placeholder="DigiPin e.g. 39J-438-TJC7" value="39J-438-TJC7"></div>
+          <button class="drun" onclick="runDec()">▶ &nbsp;Run API Call</button>
+          <div class="dout" id="decOut"><span style="color:#5E587A">// Response will appear here...</span><div class="spin" id="dl"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIDGET -->
+<section class="bg-alt">
+  <div class="si">
+    <div class="wgrid">
+      <div class="fu">
+        <div class="sec-eyebrow">Embeddable Widget</div>
+        <h2>2 lines of code.<br>Widget live.</h2>
+        <p class="sec-sub">Don't want raw API calls? Embed our pre-built widget — your customers set their DigiPin directly inside your checkout flow.</p>
+        <div class="wpoints">
+          <div class="wpoint"><div class="wicon p">📍</div><div><div class="wtitle">GPS + Map Pin Drop</div><div class="wdesc">Customers set their exact location via GPS or by dropping a pin on an interactive map.</div></div></div>
+          <div class="wpoint"><div class="wicon y">⚡</div><div><div class="wtitle">Instant Callback Event</div><div class="wdesc">When the DigiPin is confirmed, your app receives a JavaScript event to auto-fill the checkout form.</div></div></div>
+          <div class="wpoint"><div class="wicon t">🎨</div><div><div class="wtitle">Fully Customizable</div><div class="wdesc">Light/dark theme, custom button text, and brand colors — all configurable via data attributes.</div></div></div>
+        </div>
+      </div>
+      <div class="code-preview fu">
+        <div class="cph"><div class="cpdot" style="background:#FF5F57"></div><div class="cpdot" style="background:#FFBD2E"></div><div class="cpdot" style="background:#28CA41"></div><span class="cpfn">checkout.html</span></div>
+        <div class="cpbody">
+          <span class="cg">&lt;!-- Step 1: Load widget script --&gt;</span><br>
+          <span class="ck">&lt;script</span> <span class="cs">src</span>=<span style="color:#6DEDC3">"https://digipinapi.in/widget.js"</span><span class="ck">&gt;&lt;/script&gt;</span><br><br>
+          <span class="cg">&lt;!-- Step 2: Add widget container --&gt;</span><br>
+          <span class="ck">&lt;div</span> <span class="cs">id</span>=<span style="color:#6DEDC3">"digipin-widget"</span><br>
+          &nbsp;&nbsp;&nbsp;<span class="cs">data-api-key</span>=<span style="color:#6DEDC3">"YOUR_API_KEY"</span><br>
+          &nbsp;&nbsp;&nbsp;<span class="cs">data-theme</span>=<span style="color:#6DEDC3">"light"</span><span class="ck">&gt;&lt;/div&gt;</span><br><br>
+          <span class="cg">// Receive DigiPin in your app</span><br>
+          <span style="color:#6DCBFF">window</span>.addEventListener(<span style="color:#6DEDC3">'digipinSelected'</span>, (e) => {<br>
+          &nbsp;&nbsp;<span style="color:#6DCBFF">const</span> { digipin, lat, lon } = e.detail;<br>
+          &nbsp;&nbsp;<span class="cg">// → auto-fill checkout form ✓</span><br>
+          });
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="si">
+    <div class="fu" style="text-align:center">
+      <div class="sec-eyebrow" style="justify-content:center">Pricing</div>
+      <h2>Simple, transparent pricing.</h2>
+      <p class="sec-sub" style="margin:0 auto">Start free — upgrade as your business scales. No hidden fees, no surprises, no lock-in.</p>
+    </div>
+    <div class="pgrid fu">
+      <div class="pcard">
+        <div class="pplan">Starter</div>
+        <div class="pamount">Free</div>
+        <div class="pper">forever, no credit card needed</div>
+        <div class="pdiv"></div>
+        <div class="pfeats">
+          <div class="pf hi"><div class="pchk">✓</div>500 API calls / month</div>
+          <div class="pf hi"><div class="pchk">✓</div>Generate + Decode endpoints</div>
+          <div class="pf"><div class="pchk">✓</div>Full API documentation</div>
+          <div class="pf"><div class="pchk">✓</div>Email support</div>
+        </div>
+        <a href="mailto:hello@digipinapi.in" class="pbtn pbtn-out">Get Started Free</a>
+      </div>
+      <div class="pcard feat">
+        <div class="feat-tag">⭐ Most Popular</div>
+        <div class="pplan">Pro</div>
+        <div class="pamount"><span class="cur">₹</span>999</div>
+        <div class="pper">per month, billed monthly</div>
+        <div class="pdiv"></div>
+        <div class="pfeats">
+          <div class="pf hi"><div class="pchk">✓</div>50,000 API calls / month</div>
+          <div class="pf hi"><div class="pchk">✓</div>Embeddable Widget</div>
+          <div class="pf hi"><div class="pchk">✓</div>Shopify & WooCommerce plugin</div>
+          <div class="pf"><div class="pchk">✓</div>99.9% uptime SLA</div>
+          <div class="pf"><div class="pchk">✓</div>Priority support</div>
+        </div>
+        <a href="mailto:hello@digipinapi.in" class="pbtn pbtn-y">Get Pro Access →</a>
+      </div>
+      <div class="pcard">
+        <div class="pplan">Enterprise</div>
+        <div class="pamount">Custom</div>
+        <div class="pper">contact us for a quote</div>
+        <div class="pdiv"></div>
+        <div class="pfeats">
+          <div class="pf hi"><div class="pchk">✓</div>Unlimited API calls</div>
+          <div class="pf hi"><div class="pchk">✓</div>Dedicated infrastructure</div>
+          <div class="pf"><div class="pchk">✓</div>Custom SLA agreement</div>
+          <div class="pf"><div class="pchk">✓</div>White-label option</div>
+          <div class="pf"><div class="pchk">✓</div>On-call technical support</div>
+        </div>
+        <a href="mailto:hello@digipinapi.in" class="pbtn pbtn-out">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="bg-alt">
+  <div class="si">
+    <div class="fu" style="text-align:center">
+      <div class="sec-eyebrow" style="justify-content:center">FAQ</div>
+      <h2>Frequently asked questions.</h2>
+      <p class="sec-sub" style="margin:0 auto">Everything you need to know before integrating DigiPin API into your platform.</p>
+    </div>
+    <div class="faq-grid fu">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is DIGIPIN and why does it matter for Indian e-commerce?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>DIGIPIN (Digital Pincode) is a 10-character alphanumeric code introduced by India Post that maps any 4×4 meter area in India to a unique digital address. For e-commerce, this solves India's biggest last-mile problem — incomplete and inaccurate customer addresses that cause failed deliveries, costly returns, and frustrated customers. Amazon India has already added a DIGIPIN field to their checkout flow.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How accurate is the DigiPin API?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Our API provides 3×3 meter precision when the input GPS coordinates come from a device with high-accuracy GPS enabled. The DIGIPIN algorithm itself maps every unique 4×4m grid across India. API response time is under 50ms, and we use zero external API dependencies — meaning no third-party outages affect your uptime.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Which platforms and languages does the API support?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>DigiPin API is a simple REST API that works with any programming language or platform — Node.js, Python, PHP, Ruby, Java, and more. We provide ready-made plugins for Shopify and WooCommerce, and an embeddable JavaScript widget for any website. Integration takes less than 30 minutes for most developers.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Does the customer need to know their DIGIPIN?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>No. The customer simply taps "Use My Location" or drops a pin on a map in your checkout flow. Your system calls our API in the background, generates the DIGIPIN silently, and stores it. The customer never needs to know what a DIGIPIN is — it works invisibly for them while giving your delivery partners precise navigation data.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there a free plan? Do I need a credit card to start?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Yes — our Starter plan is completely free with 500 API calls per month, and no credit card is required. It's designed for developers to test, prototype, and validate integrations before committing to a paid plan. Upgrade to Pro (₹999/month) only when you're ready to go to production.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens if the customer's GPS is inaccurate?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Our embeddable widget shows a live accuracy indicator to the customer. If GPS accuracy is low (above 50m), the widget prompts the customer to drag the map pin to their exact location manually. This two-step fallback ensures precision regardless of device GPS quality. The delivery agent can also update the DIGIPIN on the first delivery visit, saving it permanently for future orders.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I get API access?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><p>Email us at <a href="mailto:hello@digipinapi.in">hello@digipinapi.in</a> to get your free API key. We respond within 24 hours with your credentials and onboarding documentation. Enterprise customers get a dedicated onboarding call and custom integration support.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-section">
+  <div class="cta-inner fu">
+    <h2 class="cta-title">Ready to eliminate<br><span class="y">failed deliveries?</span></h2>
+    <p class="cta-sub">Join Indian e-commerce businesses that are delivering with precision using DigiPin API. Start free — no credit card required.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@digipinapi.in" class="btn-y">Start for Free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#demo" class="btn-gh">See Live Demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+  <div class="si">
+    <div class="fu" style="text-align:center;margin-bottom:40px">
+      <div class="sec-eyebrow" style="justify-content:center">Legal</div>
+      <h2>Privacy Policy</h2>
+    </div>
+    <div class="privacy-card fu">
+      <div class="privacy-last-updated">Last Updated: April 2025</div>
+
+      <h3>1. Introduction</h3>
+      <p>DigiPinAPI ("we", "our", or "us") operates the website <a href="https://www.digipinapi.in">www.digipinapi.in</a> and provides the DigiPin API service. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service. By accessing or using DigiPin API, you agree to the terms of this policy.</p>
+
+      <h3>2. Information We Collect</h3>
+      <p>We collect the following categories of information:</p>
+      <ul>
+        <li><strong>Account Information:</strong> Name, email address, and company name when you register for API access.</li>
+        <li><strong>API Usage Data:</strong> Latitude and longitude coordinates submitted to the API, timestamps of API calls, and request/response logs (retained for 30 days for debugging purposes only).</li>
+        <li><strong>Technical Data:</strong> IP address, browser type, API key identifiers, and usage metrics for billing and rate limiting.</li>
+        <li><strong>Payment Information:</strong> Billing details processed securely through Razorpay. We do not store card or payment details on our servers.</li>
+      </ul>
+
+      <h3>3. How We Use Your Information</h3>
+      <ul>
+        <li>To provide, operate, and maintain the DigiPin API service.</li>
+        <li>To process payments and send billing notifications.</li>
+        <li>To monitor and prevent fraudulent or abusive API usage.</li>
+        <li>To send product updates, pricing changes, and service announcements.</li>
+        <li>To respond to customer support inquiries.</li>
+      </ul>
+
+      <h3>4. Location Data</h3>
+      <p>GPS coordinates (latitude and longitude) submitted to our API are used solely to generate or decode DIGIPIN codes. We do not store customer location data permanently, do not share location data with third parties, and do not use location data for advertising or profiling. API request logs containing coordinates are automatically deleted after 30 days.</p>
+
+      <h3>5. Data Sharing & Third Parties</h3>
+      <p>We do not sell, trade, or rent your personal information. We may share data with:</p>
+      <ul>
+        <li><strong>Razorpay</strong> — for payment processing, subject to their <a href="https://razorpay.com/privacy/" target="_blank">Privacy Policy</a>.</li>
+        <li><strong>Hosting providers</strong> — infrastructure partners bound by data processing agreements.</li>
+        <li><strong>Legal authorities</strong> — only when required by law or to protect our legal rights.</li>
+      </ul>
+
+      <h3>6. Data Security</h3>
+      <p>We implement industry-standard security measures including HTTPS encryption for all API traffic, API key authentication, rate limiting, and access controls. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+      <h3>7. Data Retention</h3>
+      <p>Account data is retained for as long as your account is active. API request logs are retained for 30 days. Upon account deletion, we remove your personal data within 14 business days, except where retention is required by law.</p>
+
+      <h3>8. Your Rights</h3>
+      <p>You have the right to access, correct, or delete your personal data. To exercise these rights, email us at <a href="mailto:privacy@digipinapi.in">privacy@digipinapi.in</a>. We will respond within 30 days.</p>
+
+      <h3>9. Cookies</h3>
+      <p>Our website uses minimal cookies for session management and analytics (via Google Analytics, if enabled). You may disable cookies in your browser settings without affecting core API functionality.</p>
+
+      <h3>10. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy periodically. We will notify registered users by email of any material changes. Continued use of the service after changes constitutes acceptance of the updated policy.</p>
+
+      <h3>11. Contact Us</h3>
+      <p>For privacy-related questions or data requests, contact us at:<br><a href="mailto:privacy@digipinapi.in">privacy@digipinapi.in</a> · DigiPinAPI, India</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-top">
+  <div class="footer-grid">
+    <div>
+      <div class="flogo">DigiPin<span>API</span></div>
+      <div class="ftag">India's dedicated DIGIPIN API for e-commerce, logistics, and delivery platforms. Built on India Post's official DIGIPIN standard.</div>
+      <a href="mailto:hello@digipinapi.in" class="fmail">hello@digipinapi.in</a>
+    </div>
+    <div>
+      <div class="fh">Product</div>
+      <div class="flinks-col">
+        <a href="#how">How It Works</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#pricing">Pricing</a>
+        <a href="mailto:hello@digipinapi.in">API Docs</a>
+        <a href="mailto:hello@digipinapi.in">Widget</a>
+      </div>
+    </div>
+    <div>
+      <div class="fh">Company</div>
+      <div class="flinks-col">
+        <a href="mailto:hello@digipinapi.in">Contact</a>
+        <a href="mailto:hello@digipinapi.in">Support</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
+    </div>
+    <div>
+      <div class="fh">Integrations</div>
+      <div class="flinks-col">
+        <a href="mailto:hello@digipinapi.in">Shopify Plugin</a>
+        <a href="mailto:hello@digipinapi.in">WooCommerce</a>
+        <a href="mailto:hello@digipinapi.in">REST API</a>
+        <a href="mailto:hello@digipinapi.in">JS Widget</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <div class="fcopy">© 2025 DigiPinAPI · Powered by India Post DIGIPIN · Made in India 🇮🇳</div>
+  <div class="fpolicy">
+    <a href="#privacy">Privacy Policy</a>
+    <a href="mailto:hello@digipinapi.in">Terms of Service</a>
+    <a href="mailto:hello@digipinapi.in">Cookie Policy</a>
+  </div>
+</div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+// Navbar scroll shadow
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// Scroll animations
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+// FAQ toggle
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+// Live Demo API
+const API='https://getdigipin.app.n8n.cloud/webhook';
+
+async function runGen(){
+  const lat=document.getElementById('dLat').value.trim();
+  const lon=document.getElementById('dLon').value.trim();
+  const out=document.getElementById('genOut');
+  const ldr=document.getElementById('gl');
+  out.innerHTML='';ldr.style.display='block';out.appendChild(ldr);
+  try{
+    const r=await fetch(`${API}/generate-digipin?lat=${lat}&lon=${lon}`);
+    const d=await r.json();
+    ldr.style.display='none';
+    out.innerHTML=`<span style="color:#5E587A">// 200 OK · ${new Date().toLocaleTimeString()}</span>\n{\n  <span style="color:#6DCBFF">"status"</span>: <span style="color:#6DEDC3">"${d.status}"</span>,\n  <span style="color:#6DCBFF">"digipin"</span>: <span style="color:#FCA61F;font-weight:700">"${d.digipin}"</span>,\n  <span style="color:#6DCBFF">"lat"</span>: <span style="color:#FDB849">${d.lat}</span>,\n  <span style="color:#6DCBFF">"lon"</span>: <span style="color:#FDB849">${d.lon}</span>\n}`;
+    document.getElementById('dCode').value=d.digipin;
+  }catch(e){ldr.style.display='none';out.innerHTML=`<span style="color:#EB5757">// Error: ${e.message}</span>`;}
+}
+
+async function runDec(){
+  const code=document.getElementById('dCode').value.trim();
+  const out=document.getElementById('decOut');
+  const ldr=document.getElementById('dl');
+  out.innerHTML='';ldr.style.display='block';out.appendChild(ldr);
+  try{
+    const r=await fetch(`${API}/decode-digipin?digipin=${encodeURIComponent(code)}`);
+    const d=await r.json();
+    ldr.style.display='none';
+    out.innerHTML=`<span style="color:#5E587A">// 200 OK · ${new Date().toLocaleTimeString()}</span>\n{\n  <span style="color:#6DCBFF">"status"</span>: <span style="color:#6DEDC3">"Success"</span>,\n  <span style="color:#6DCBFF">"lat"</span>: <span style="color:#FDB849">${d.lat}</span>,\n  <span style="color:#6DCBFF">"lon"</span>: <span style="color:#FDB849">${d.lon}</span>,\n  <span style="color:#6DCBFF">"maps_url"</span>: <span style="color:#6DEDC3">"<a href='https://maps.google.com/?q=${d.lat},${d.lon}' target='_blank' style='color:#6DEDC3;text-decoration:none'>Open in Google Maps ↗</a>"</span>\n}`;
+  }catch(e){ldr.style.display='none';out.innerHTML=`<span style="color:#EB5757">// Error: ${e.message}</span>`;}
+}
+</script>
+</body>
+</html>
