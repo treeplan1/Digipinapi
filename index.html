@@ -31,9 +31,8 @@
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                 <a href="#features" class="hover:text-indigo-400 transition-colors">Features</a>
-                <a href="#how-it-works" class="hover:text-indigo-400 transition-colors">How it Works</a>
+                <a href="#demo" class="hover:text-indigo-400 transition-colors">Live Demo</a>
                 <a href="#pricing" class="hover:text-indigo-400 transition-colors">Pricing</a>
-                <a href="#docs" class="hover:text-indigo-400 transition-colors">API Docs</a>
             </nav>
             <div class="flex items-center space-x-4">
                 <a href="#pricing" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white px-4 py-2">Sign In</a>
@@ -57,29 +56,41 @@
                 Convert chaotic addresses into standardized 10-character DIGIPIN grid units. Cut down delivery return rates by 34% with sub-50ms API response times.
             </p>
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-xl shadow-indigo-600/30 transition-all flex items-center justify-center space-x-2">
-                    <span>Start Free Developer Tier</span>
+                <a href="#demo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-xl shadow-indigo-600/30 transition-all flex items-center justify-center space-x-2">
+                    <span>Try Interactive Demo</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
-                <a href="#docs" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-medium transition-all">
-                    View Documentation
+                <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-medium transition-all">
+                    View Pricing Plans
                 </a>
             </div>
+        </div>
+    </section>
 
-            <!-- Terminal Code Preview Card -->
-            <div class="mt-16 max-w-3xl mx-auto rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl text-left overflow-hidden">
-                <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-                    <div class="flex space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+    <!-- Interactive Live Demo Section -->
+    <section id="demo" class="py-24 border-t border-slate-900 bg-slate-900/20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Test the API Instantly</h2>
+                <p class="mt-2 text-slate-400">Enter geographic coordinates to generate a gate-level 10-character DIGIPIN.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">LATITUDE</label>
+                        <input type="text" id="latInput" value="28.8391" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 font-mono text-sm">
                     </div>
-                    <span class="text-xs font-mono text-slate-400">POST /v1/convert</span>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">LONGITUDE</label>
+                        <input type="text" id="lngInput" value="78.7842" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 font-mono text-sm">
+                    </div>
                 </div>
-                <div class="p-6 font-mono text-xs sm:text-sm overflow-x-auto text-slate-300">
-                    <span class="text-indigo-400">curl</span> -X POST https://api.digipin.dev/v1/convert \<br>
-                    &nbsp;&nbsp;-H <span class="text-emerald-400">"Authorization: Bearer dp_live_99x..."</span> \<br>
-                    &nbsp;&nbsp;-d <span class="text-slate-400">'{"lat": 28.8391, "lng": 78.7842}'</span>
+                <button onclick="generateDigipin()" class="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-600/30 transition-all">
+                    Convert to DIGIPIN
+                </button>
+                <div class="mt-8 p-6 rounded-2xl bg-slate-950 border border-slate-800/80 text-center">
+                    <span class="text-xs text-slate-500 uppercase tracking-widest block mb-1">Generated Result (3x3m Grid)</span>
+                    <span id="resultOutput" class="text-2xl sm:text-3xl font-mono font-bold text-indigo-400 tracking-wider">4J82-M9KP-2A</span>
                 </div>
             </div>
         </div>
@@ -93,21 +104,21 @@
                 <p class="mt-4 text-slate-400">Everything high-volume e-commerce engines need for precise last-mile mapping.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80">
                     <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 text-xl">
                         <i class="fa-solid fa-bullseye"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">3×3 Meter Accuracy</h3>
                     <p class="text-slate-400 text-sm leading-relaxed">Pinpoint exact delivery gates using high-resolution spatial partitioning matching India Post grids.</p>
                 </div>
-                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80">
                     <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 text-xl">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Sub-50ms Latency</h3>
                     <p class="text-slate-400 text-sm leading-relaxed">Optimized edge computing engines ensure zero delay on high-traffic checkout flows.</p>
                 </div>
-                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80">
                     <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 text-xl">
                         <i class="fa-solid fa-puzzle-piece"></i>
                     </div>
@@ -135,13 +146,12 @@
                         <ul class="mt-8 space-y-4 text-sm text-slate-300">
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> 5,000 API requests /mo</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Standard 3x3m accuracy</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Community support</li>
                         </ul>
                     </div>
                     <a href="#" class="mt-10 block w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-sm font-medium transition-colors">Get Started Free</a>
                 </div>
                 <!-- Pro Tier -->
-                <div class="p-8 rounded-3xl bg-slate-900 border-2 border-indigo-500 relative flex flex-col justify-between shadow-2xl shadow-indigo-600/10">
+                <div class="p-8 rounded-3xl bg-slate-900 border-2 border-indigo-500 relative flex flex-col justify-between shadow-2xl">
                     <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-full uppercase tracking-wider">Most Popular</div>
                     <div>
                         <h3 class="text-lg font-semibold text-white">Pro</h3>
@@ -151,7 +161,6 @@
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> 1,00,000 API requests /mo</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Sub-50ms Edge Response</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Checkout JS SDK & Widgets</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Priority email support</li>
                         </ul>
                     </div>
                     <a href="#" class="mt-10 block w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-center text-sm font-medium transition-colors shadow-lg shadow-indigo-600/30">Start Pro Trial</a>
@@ -165,8 +174,6 @@
                         <ul class="mt-8 space-y-4 text-sm text-slate-300">
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Unlimited requests</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> 99.9% Uptime SLA</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Custom ERP & TMS integrations</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3"></i> Dedicated account manager</li>
                         </ul>
                     </div>
                     <a href="#" class="mt-10 block w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-sm font-medium transition-colors">Contact Sales</a>
@@ -182,10 +189,35 @@
             <div class="flex space-x-6 mt-4 sm:mt-0">
                 <a href="#" class="hover:text-slate-400">Privacy Policy</a>
                 <a href="#" class="hover:text-slate-400">Terms of Service</a>
-                <a href="#" class="hover:text-slate-400">Contact</a>
             </div>
         </div>
     </footer>
 
+    <!-- Interactive Simulator Script -->
+    <script>
+        function generateDigipin() {
+            const lat = parseFloat(document.getElementById('latInput').value);
+            const lng = parseFloat(document.getElementById('lngInput').value);
+            
+            if (isNaN(lat) || isNaN(lng)) {
+                document.getElementById('resultOutput').innerText = "Invalid Coordinates";
+                return;
+            }
+
+            // Simple hash-based simulation for mock demo output
+            const chars = "23456789CFGHJMPQRVWX";
+            let code = "";
+            let seed = Math.abs(Math.sin(lat * lng) * 10000);
+            
+            for (let i = 0; i < 10; i++) {
+                seed = (seed * 9301 + 49297) % 233280;
+                let rnd = Math.floor((seed / 233280) * chars.length);
+                code += chars[rnd];
+                if (i === 3 || i === 7) code += "-";
+            }
+            
+            document.getElementById('resultOutput').innerText = code;
+        }
+    </script>
 </body>
 </html>
